@@ -69,5 +69,3 @@ services:
         - "3000:80"
       volumes:
         - ./docker/phpmyadmin/sessions:/sessions
-volumes:
-  laravel-project:
