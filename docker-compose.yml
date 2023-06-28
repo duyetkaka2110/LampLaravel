@@ -59,15 +59,13 @@ services:
   #Myadmin
   phpmyadmin:
       container_name: phpmyadmin
-      image: phpmyadmin/phpmyadmin
-      depends_on:
-        - mysql
+      image: phpmyadmin/phpmyadmin:lastest
       environment:
-        - PMA_ARBITRARY=1
+        # - PMA_ARBITRARY=1
         - PMA_HOSTS=mysql
-        - PMA_PORT=3306
-        # - PMA_USER=user
-        # - PMA_PASSWORD=123789
+        # - PMA_PORT=3306
+        - PMA_USER=user
+        - PMA_PASSWORD=123789
       ports:
         - "3000:80"
       volumes:
