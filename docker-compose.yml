@@ -45,10 +45,10 @@ services:
       - ${DB_PORT}:3306
     # MySQLの環境変数
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
+      # MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: user
       MYSQL_PASSWORD: passs
-      MYSQL_ROOT_USER: root
+      # MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -61,8 +61,6 @@ services:
       container_name: phpmyadmin
       image: phpmyadmin/phpmyadmin
       depends_on:
-        - mysql
-      links: 
         - mysql
       environment:
         - PMA_ARBITRARY=1
