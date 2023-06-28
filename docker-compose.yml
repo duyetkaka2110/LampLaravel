@@ -62,10 +62,14 @@ services:
       image: phpmyadmin/phpmyadmin
       depends_on:
         - mysql
+      links: 
+        - mysql
       environment:
         - PMA_ARBITRARY=1
         - PMA_HOSTS=mysql
         - PMA_PORT=3306
+        - PMA_USER=user
+        - PMA_PASSWORD=123789
       ports:
         - "3000:80"
       volumes:
