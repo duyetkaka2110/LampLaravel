@@ -34,7 +34,8 @@ services:
       - ./src/:/var/www/html
 
   # MySQL
-  db:
+  mysqldb:
+    image: mysql:5.7
     container_name: laravel_db
     build:
       context: .
@@ -50,11 +51,12 @@ services:
       MYSQL_ROOT_USER: ${DB_ROOT_USER}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       TZ: 'Asia/Tokyo'
-    command: mysqld
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+
   #Myadmin
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
