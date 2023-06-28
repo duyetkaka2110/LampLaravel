@@ -54,6 +54,18 @@ services:
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-
+      
+  #Myadmin
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      depends_on:
+        - mysqldb
+      environment:
+        - PMA_ARBITRARY=1
+        - PMA_HOSTS='mysqldb'
+      ports:
+        - "3000:80"
+      volumes:
+        - ./docker/phpmyadmin/sessions:/sessions
 volumes:
   laravel-project:
