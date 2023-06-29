@@ -25,8 +25,13 @@ docker stop $(docker ps -a -q)
 
 - When change config nginx, run 2 command 
  docker-compose build web
- docker-compose up -d
+ docker-compose up -d --build
 
+- BASH MYSQL 
+ docker-compose exec mysql bash
+ mysql -u root -p
+show databases;
+show tables;
 
 - Git install
 sudo apt-get update
