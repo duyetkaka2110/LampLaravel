@@ -20,6 +20,9 @@ sudo systemctl status docker
 - Remove all container in docker
 docker container prune
 
+- STop all docker 
+docker stop $(docker ps -a -q)
+
 - When change config nginx, run 2 command 
  docker-compose build web
  docker-compose up -d
@@ -55,6 +58,11 @@ $ docker-compose up -d
 もしlocalhostにアクセスしてもエラーが出た場合
 laravelプロジェクト内のstorageフォルダ配下に権限を付与する。
 $ docker-compose exec app chmod -R 777 *プロジェクト名*/storage
+
+
+=> run command in laravel root: 
+docker-compose exec app bash
+
 
 How to Build a Lamp Stack Docker Container on Ubuntu 21.04
 https://www.youtube.com/watch?v=uFe7bsWOObo
