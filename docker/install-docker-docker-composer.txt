@@ -44,7 +44,8 @@ $ docker-compose build
 $ docker-compose up -d
 
 Laravelプロジェクトを作成
-$ docker-compose exec app composer create-project laravel/laravel *プロジェクト名* --prefer-dist "6.0.*"
+$ docker-compose exec app composer create-project laravel/laravel *プロジェクト名* --prefer-dist "10.0.*"
+docker-compose exec app composer create-project laravel/laravel ITS --prefer-dist "10.0.*"
 
 nginxのルート設定変更
 docker/nginx/default.conf内のroot設定を変更
@@ -77,3 +78,6 @@ step by step install LAMP
 https://github.com/mubin-khalid/lamp-laravel-setup
 
 
+Note:
+https://qiita.com/ucan-lab/items/5fc1281cd8076c8ac9f4
+https://qiita.com/Delia/items/120b044dabf9035fc9d6

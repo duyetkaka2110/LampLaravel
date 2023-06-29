@@ -10,7 +10,7 @@ services:
       dockerfile: ./docker/php/Dockerfile
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
-      - DB_HOST=mysql
+      - DB_HOST=${DB_USER}
       - DB_PORT=3306
       - DB_DATABASE=${DB_NAME}
       - DB_USERNAME=${DB_USER}
@@ -34,7 +34,6 @@ services:
 
   # MySQL
   mysql:
-  
     image: mysql:5.7
     container_name: mysql
     build:
@@ -55,7 +54,7 @@ services:
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
-      # - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     depends_on:
       - web
 
@@ -72,13 +71,3 @@ services:
       - 3000:80
     depends_on:
       - mysql
-  # phpmyadmin:
-  #     container_name: phpmyadmin
-  #     image: phpmyadmin/phpmyadmin:latest
-  #     environment:
-  #       - PMA_ARBITRARY=1
-  #       - PMA_HOSTS=mysql
-  #     ports:
-  #       - "3000:80"
-  #     volumes:
-  #       - ./docker/phpmyadmin/sessions:/sessions
