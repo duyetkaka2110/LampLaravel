@@ -21,4 +21,4 @@ RUN apt-get update \
     && docker-php-ext-install pdo_mysql bcmath
 
 # コンテナでの作業ディレクトリを指定(docker-compose exec app bashを利用した時のカレントディレクトリになる)
-WORKDIR /src
+WORKDIR /LampLaravel/src
