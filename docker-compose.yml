@@ -8,7 +8,6 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-    working_dir: ./src/
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=db
