@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  
+
   # PHP
   app:
     container_name: laravel_app
@@ -34,6 +34,7 @@ services:
 
   # MySQL
   mysql:
+
     image: mysql:5.7
     container_name: mysql
     build:
@@ -43,10 +44,9 @@ services:
     ports:
       - ${DB_PORT}:3306
     # MySQLの環境変数
-    environment:      
+    environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_USER: ${DB_ROOT_USER}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       TZ: 'Asia/Tokyo'
@@ -71,3 +71,13 @@ services:
       - 3000:80
     depends_on:
       - mysql
+  # phpmyadmin:
+  #     container_name: phpmyadmin
+  #     image: phpmyadmin/phpmyadmin:latest
+  #     environment:
+  #       - PMA_ARBITRARY=1
+  #       - PMA_HOSTS=mysql
+  #     ports:
+  #       - "3000:80"
+  #     volumes:
+  #       - ./docker/phpmyadmin/sessions:/sessions
