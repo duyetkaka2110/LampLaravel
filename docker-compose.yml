@@ -34,12 +34,12 @@ services:
 
   # MySQL
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: mysql
     build:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
-
+ 
     ports:
       - ${DB_PORT}:3306
     # MySQLの環境変数
