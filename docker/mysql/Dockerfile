@@ -1,3 +1,3 @@
-FROM mysql:5.7
+FROM mysql:8.0
 
- COPY ./docker/mysql/my.cnf /etc/my.cnf
+#COPY ./docker/mysql/my.cnf /etc/my.cnf
