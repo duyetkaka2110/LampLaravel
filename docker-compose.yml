@@ -43,12 +43,12 @@ services:
     ports:
       - ${DB_PORT}:3306
     # MySQLの環境変数
-    environment:
+    environment:      
       MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${laravel_user}
-      MYSQL_PASSWORD: ${laravel_pass}
-      MYSQL_ROOT_USER: ${root}
-      MYSQL_ROOT_PASSWORD: ${root}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_USER: ${DB_ROOT_USER}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
