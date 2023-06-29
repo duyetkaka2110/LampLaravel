@@ -57,7 +57,7 @@ services:
 
   #Myadmin
   phpmyadmin:
-    build: ./phpmyadmin/
+    build: ./docker/phpmyadmin/
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
     container_name: phpmyadmin
