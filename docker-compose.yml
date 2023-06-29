@@ -57,12 +57,24 @@ services:
 
   #Myadmin
   phpmyadmin:
-      container_name: phpmyadmin
-      image: phpmyadmin/phpmyadmin:latest
-      environment:
-        - PMA_ARBITRARY=1
-        - PMA_HOSTS=mysql
-      ports:
-        - "3000:80"
-      volumes:
-        - ./docker/phpmyadmin/sessions:/sessions
+    build: ./phpmyadmin/
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    ports:
+      - 3000:80
+    depends_on:
+      - mysql
+  # phpmyadmin:
+  #     container_name: phpmyadmin
+  #     image: phpmyadmin/phpmyadmin:latest
+  #     environment:
+  #       - PMA_ARBITRARY=1
+  #       - PMA_HOSTS=mysql
+  #     ports:
+  #       - "3000:80"
+  #     volumes:
+  #       - ./docker/phpmyadmin/sessions:/sessions
