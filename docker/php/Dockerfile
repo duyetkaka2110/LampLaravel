@@ -5,7 +5,7 @@ FROM php:8.1-fpm
 COPY ./docker/php/php.ini /usr/local/etc/app/php.ini
 
 # Composer install
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 #node.js install(reactを使用するため)
 COPY --from=node:10.22 /usr/local/bin /usr/local/bin
