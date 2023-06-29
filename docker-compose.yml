@@ -54,7 +54,8 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
+      # - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     depends_on:
       - web
 
