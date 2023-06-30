@@ -6,4 +6,4 @@ ENV TZ=UTC
 # nginx config file,  Nginxの設定ファイルをコンテナ内にコピーして対応づける
 COPY ./docker/nginx/*.conf /etc/nginx/conf.d/
 
-WORKDIR /var/www/html2
+WORKDIR /var/www/html
