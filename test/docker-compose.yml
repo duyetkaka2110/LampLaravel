@@ -2,25 +2,25 @@ version: '3.3'
 
 services:
 
-  # # PHP
-  # app:
-  #   container_name: laravel_app
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/php/Dockerfile
-  #   environment:
-  #     - DB_CONNECTION=${DB_CONNECTION}
-  #     - DB_HOST=mysql
-  #     - DB_PORT=3306
-  #     - DB_DATABASE=${DB_NAME}
-  #     - DB_USERNAME=${DB_USER}
-  #     - DB_PASSWORD=${DB_PASSWORD}
-  #   volumes:
-  #     - ./src/:/var/www/html
+  # PHP
+  app:
+    container_name: laravel_app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=mysql
+      - DB_PORT=3307
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./src/:/var/www/html
 
   # Nginx
-  web_test:
-    container_name: laravel_web_test
+  web2:
+    container_name: laravel_web2
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
@@ -28,49 +28,49 @@ services:
     ports:
       - 81:81
     depends_on:
-      - laravel_app
+      - app2
     volumes:
       - ./src/:/var/www/html
 
-  # # MySQL
-  # mysql:
-  #   image: mysql:5.7
-  #   container_name: mysql
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/mysql/Dockerfile
+  # MySQL
+  mysql2:
+    image: mysql:5.7
+    container_name: mysql2
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
  
-  #   ports:
-  #     - ${DB_PORT}:3306
-  #   # MySQLの環境変数
-  #   environment:
-  #     MYSQL_DATABASE: ${DB_NAME}
-  #     MYSQL_USER: ${DB_USER}
-  #     MYSQL_PASSWORD: ${DB_PASSWORD}
-  #     MYSQL_ROOT_USER: ${DB_ROOT_USER}
-  #     MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-  #     TZ: 'Asia/Tokyo'
-  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-  #   volumes:
-  #     - ./docker/mysql/data:/var/lib/mysql
-  #     - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
-  #     # - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-  #   depends_on:
-  #     - web
+    ports:
+      - 3307:3307
+    # MySQLの環境変数
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_USER: ${DB_ROOT_USER}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
+      # - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    depends_on:
+      - web2
 
   #Myadmin
-  # phpmyadmin2:
-  #   build: ./docker/phpmyadmin/
-  #   volumes:
-  #     - ./docker/phpmyadmin/sessions:/sessions
-  #   container_name: phpmyadmin2
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=mysql
-  #   ports:
-  #     - 3001:81
-  #   depends_on:
-  #     - mysql
+  phpmyadmin2:
+    build: ./docker/phpmyadmin/
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+    container_name: phpmyadmin2
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    ports:
+      - 3001:81
+    depends_on:
+      - mysql2
   # phpmyadmin:
   #     container_name: phpmyadmin
   #     image: phpmyadmin/phpmyadmin:latest
