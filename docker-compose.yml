@@ -7,7 +7,7 @@ services:
     container_name: laravel_app
     build:
       context: .
-      dockerfile: ./docker/php2/Dockerfile
+      dockerfile: ./docker/php/Dockerfile
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=mysql
@@ -31,7 +31,7 @@ services:
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./src/:/var/www/html
+      - ./src2/:/var/www/html
 
   # Nginx
   web:
@@ -59,7 +59,7 @@ services:
     depends_on:
       - app2
     volumes:
-      - ./src/:/var/www/html
+      - ./src2/:/var/www/html
 
   # MySQL
   mysql:
@@ -85,7 +85,7 @@ services:
       - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
       # - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     depends_on:
-      - web2
+      - web
 
   #Myadmin
   phpmyadmin:
