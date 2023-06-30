@@ -52,7 +52,7 @@ services:
     container_name: laravel_web2
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx2/Dockerfile
 
     ports:
       - 81:80
