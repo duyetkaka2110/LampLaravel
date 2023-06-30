@@ -31,7 +31,7 @@ services:
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./src/:/var/www/html
+      - ./src2/:/var/www/html
 
   # Nginx
   web:
