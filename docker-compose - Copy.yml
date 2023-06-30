@@ -1,0 +1,43 @@
+version: "3"
+services:
+  php:
+    build: ./php/
+    volumes:
+      - ./php/src:/var/www/html
+    container_name: php
+    tty: true
+  nginx:
+    build: ./web/
+    volumes:
+      - ./php:/var/www/html         # Laravelがあるディレクトリをマウント
+    container_name: nginx
+    ports:
+      - 8080:80                     # EC2のセキュリティグループで8080開放しておく
+    depends_on:
+      - php                         # phpが起動してから起動する
+  mysql:
+    build: ./db/
+    volumes:
+      - ./db/init.d:/docker-entrypoint-initdb.d   # イメージをbuildする際に実行される　初期データを作成するSQLファイル等を置いておく
+      - ./db/data:/var/lib/mysql                  # 作成したテーブル等を永続させる場合に必要　※１
+    container_name: mysql
+    environment: 
+      MYSQL_USER: yourname
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    depends_on:
+      - nginx
+  phpmyadmin:
+    build: ./phpmyadmin/
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    ports:
+      - 3000:80
+    depends_on:
+      - mysql

@@ -1,0 +1,83 @@
+- Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+apt-cache policy docker-ce
+sudo apt-get install -y docker-ce
+sudo systemctl start docker
+
+
+- Docker compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+
+- Check after install
+sudo systemctl status docker
+
+
+- Remove all container in docker
+docker container prune
+
+- STop all docker 
+docker stop $(docker ps -a -q)
+
+- When change config nginx, run 2 command 
+ docker-compose build web
+ docker-compose up -d --build
+
+- BASH MYSQL 
+ docker-compose exec mysql bash
+ mysql -u root -p
+show databases;
+show tables;
+
+- Git install
+sudo apt-get update
+sudo apt-get install git-core
+
+コンテナ構築
+$ docker-compose build
+
+コンテナ起動
+$ docker-compose up -d
+
+Laravelプロジェクトを作成
+$ docker-compose exec app composer create-project laravel/laravel *プロジェクト名* --prefer-dist "10.0.*"
+docker-compose exec app composer create-project laravel/laravel ITS --prefer-dist "10.0.*"
+
+nginxのルート設定変更
+docker/nginx/default.conf内のroot設定を変更
+server {
+    listen 80;
+
+    root /var/www/html/*プロジェクト名*/public;  ←ここ
+
+    ...
+}
+
+作成したら再構築して再起動
+$ docker-compose build web
+$ docker-compose up -d
+
+もしlocalhostにアクセスしてもエラーが出た場合
+laravelプロジェクト内のstorageフォルダ配下に権限を付与する。
+$ docker-compose exec app chmod -R 777 *プロジェクト名*/storage
+
+
+=> run command in laravel root: 
+docker-compose exec app bash
+
+
+How to Build a Lamp Stack Docker Container on Ubuntu 21.04
+https://www.youtube.com/watch?v=uFe7bsWOObo
+
+
+step by step install LAMP
+https://github.com/mubin-khalid/lamp-laravel-setup
+
+
+Note:
+https://qiita.com/ucan-lab/items/5fc1281cd8076c8ac9f4
+https://qiita.com/Delia/items/120b044dabf9035fc9d6
