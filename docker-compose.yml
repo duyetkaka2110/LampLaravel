@@ -18,6 +18,21 @@ services:
     volumes:
       - ./src/:/var/www/html
 
+  app2:
+    container_name: laravel_app2
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./src/:/var/www/html
+
   # Nginx
   web:
     container_name: laravel_web
@@ -42,7 +57,7 @@ services:
     ports:
       - 81:80
     depends_on:
-      - app
+      - app2
     volumes:
       - ./src2/:/var/www/html
 
