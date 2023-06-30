@@ -1,6 +1,6 @@
 FROM nginx:1.18
 
-# 環境変数（TZ）を定義
+# 環境変数（TZ）を定義 
 ENV TZ=UTC
 
 # nginx config file,  Nginxの設定ファイルをコンテナ内にコピーして対応づける
