@@ -38,7 +38,7 @@ services:
     container_name: laravel_web
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx/Dockerfile 
 
     ports:
       - ${WEB_PORT}:80
