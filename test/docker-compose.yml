@@ -28,7 +28,7 @@ services:
     ports:
       - 81:81
     depends_on:
-      - app
+      - laravel_app
     volumes:
       - ./src/:/var/www/html
 
