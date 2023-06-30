@@ -40,7 +40,7 @@ services:
       dockerfile: ./docker/nginx2/Dockerfile
 
     ports:
-      - ${WEB_PORT}:81
+      - 81:81
     depends_on:
       - app
     volumes:
