@@ -31,7 +31,7 @@ services:
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./src2/:/var/www/html
+      - ./src2/:/var/www/html2
 
   # Nginx
   # web:
@@ -59,7 +59,7 @@ services:
     depends_on:
       - app2
     volumes:
-      - ./src2/:/var/www/html
+      - ./src2/:/var/www/html2
 
   # MySQL
   mysql:
