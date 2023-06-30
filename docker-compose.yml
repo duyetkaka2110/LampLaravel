@@ -44,7 +44,7 @@ services:
     depends_on:
       - app
     volumes:
-      - ./src/:/var/www/html
+      - ./src2/:/var/www/html
 
   # MySQL
   mysql:
