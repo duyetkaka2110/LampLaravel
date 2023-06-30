@@ -22,7 +22,7 @@ services:
     container_name: laravel_app2
     build:
       context: .
-      dockerfile: ./docker/php2/Dockerfile
+      dockerfile: ./docker/php/Dockerfile
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=mysql
@@ -52,7 +52,7 @@ services:
     container_name: laravel_web2
     build:
       context: .
-      dockerfile: ./docker/nginx2/Dockerfile
+      dockerfile: ./docker/nginx/Dockerfile
 
     ports:
       - 81:80
