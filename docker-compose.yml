@@ -32,6 +32,20 @@ services:
     volumes:
       - ./src/:/var/www/html
 
+  # Nginx
+  web2:
+    container_name: laravel_web2
+    build:
+      context: .
+      dockerfile: ./docker/nginx2/Dockerfile
+
+    ports:
+      - ${WEB_PORT}:81
+    depends_on:
+      - app
+    volumes:
+      - ./src/:/var/www/html
+
   # MySQL
   mysql:
     image: mysql:5.7
