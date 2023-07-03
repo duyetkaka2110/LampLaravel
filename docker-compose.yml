@@ -23,6 +23,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
+    ports:
+      - 9001:9000
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=mysql
