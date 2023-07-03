@@ -22,7 +22,7 @@ services:
     container_name: laravel_apptwo
     build:
       context: .
-      dockerfile: ./docker/php/Dockerfile
+      dockerfile: ./docker/php2/Dockerfile
     environment:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=mysql
