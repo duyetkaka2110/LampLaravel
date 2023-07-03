@@ -15,11 +15,11 @@ services:
       - DB_DATABASE=${DB_NAME}
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - ./src/:/var/www/html
+    # volumes:
+    #   - ./src/:/var/www/html
 
-  app2:
-    container_name: laravel_app2
+  apptwo:
+    container_name: laravel_apptwo
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
@@ -30,8 +30,8 @@ services:
       - DB_DATABASE=${DB_NAME}
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - ./src2/:/var/www/html
+    # volumes:
+    #   - ./src2/:/var/www/html
 
   # Nginx
   web:
@@ -48,16 +48,16 @@ services:
       - ./src/:/var/www/html
 
   # Nginx
-  web2:
-    container_name: laravel_web2
+  webtwo:
+    container_name: laravel_webtwo
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx2/Dockerfile
 
     ports:
       - 81:80
     depends_on:
-      - app2
+      - two
     volumes:
       - ./src2/:/var/www/html
 
