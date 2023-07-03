@@ -57,7 +57,7 @@ services:
     ports:
       - 81:80
     depends_on:
-      - apptwo
+      - app
     volumes:
       - ./src2/:/var/www/html/ITS2
 
