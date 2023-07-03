@@ -18,20 +18,20 @@ services:
     volumes:
       - ./src/:/var/www/html
 
-  # apptwo:
-  #   container_name: laravel_apptwo
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/php2/Dockerfile
-  #   environment:
-  #     - DB_CONNECTION=${DB_CONNECTION}
-  #     - DB_HOST=mysql
-  #     - DB_PORT=3306
-  #     - DB_DATABASE=${DB_NAME}
-  #     - DB_USERNAME=${DB_USER}
-  #     - DB_PASSWORD=${DB_PASSWORD}
-  #   volumes:
-  #     - ./src2/:/var/www/html
+  appdev:
+    container_name: laravel_app_dev
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME}
+      - DB_USERNAME=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./src2/:/var/www/html
 
   # Nginx
   web:
@@ -45,11 +45,11 @@ services:
     depends_on:
       - app
     volumes:
-      - ./src/:/var/www/html/ITS
+      - ./src/:/var/www/html
 
   # Nginx
-  webtwo:
-    container_name: laravel_webtwo
+  webdev:
+    container_name: laravel_web_dev
     build:
       context: .
       dockerfile: ./docker/nginx2/Dockerfile
@@ -57,9 +57,9 @@ services:
     ports:
       - 81:80
     depends_on:
-      - app
+      - appdev
     volumes:
-      - ./src2/:/var/www/html/ITS2
+      - ./src2/:/var/www/html
 
   # MySQL
   mysql:
