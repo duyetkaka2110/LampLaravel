@@ -57,7 +57,7 @@ services:
     ports:
       - 81:80
     depends_on:
-      - two
+      - apptwo
     volumes:
       - ./src2/:/var/www/html
 
