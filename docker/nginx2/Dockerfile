@@ -4,6 +4,6 @@ FROM nginx:1.18
 ENV TZ=UTC
 
 # nginx config file,  Nginxの設定ファイルをコンテナ内にコピーして対応づける
-COPY ./docker/nginx/*.conf /etc/nginx/conf.d/
+COPY ./docker/nginx2/*.conf /etc/nginx/conf.d/
 
 WORKDIR /var/www/html
