@@ -61,6 +61,14 @@ server {
 $ docker-compose build web
 $ docker-compose up -d
 
+After download Git project, run this command:
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan storage:link
+chmod -R 777 storage bootstrap/cache
+php artisan migrate
+
 もしlocalhostにアクセスしてもエラーが出た場合
 laravelプロジェクト内のstorageフォルダ配下に権限を付与する。
 $ docker-compose exec app chmod -R 777 *プロジェクト名*/storage

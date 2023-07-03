@@ -27,7 +27,7 @@ services:
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=mysql
       - DB_PORT=3306
-      - DB_DATABASE=${DB_NAME}
+      - DB_DATABASE=laravel_dev
       - DB_USERNAME=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
